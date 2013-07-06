@@ -2,36 +2,28 @@ __author__ = 'gayyzxyx'
 import sqlite3
 import os
 
-db_path = "../db"
-db_file = "bottle.db"
-def initDb():
-    if not os.path.exists(db_path):
-        os.mkdir(db_path)
 
-    if os.path.isfile("%s/%s" % (db_path, db_file)):
-        print "[ERROR] DB FILE exists, could not be init DB."
-        os.system("pause>nul")
-        exit(0)
-    else:
-        connect = sqlite3.connect("%s/%s" % (db_path, db_file))
-        cursor = connect.cursor()
 
-        cursor.execute("""
-            CREATE TABLE USER(
-            ID INTEGER  PRIMARY KEY AUTOINCREMENT,
-            NAME VARCHAR(32) UNIQUE,
-            PASSWORD  VARCHAR(32),
-             PERMISSION INT
-        )""")
+class data:
+    def __init__(self):
+        self.db = os.path.join(os.path.dirname(os.getcwd()),"db\\bottle.db")
+        self.connect = None
+        self.cursor = None
+    def __open__(self):
+        self.connect = sqlite3.connect(self.db)
+        self.cursor = self.connect.cursor()
 
-def insert(name,password,permission):
-    cx = sqlite3.connect("../db/bottle.db")
-    cu = cx.cursor()
-    cu.execute("insert into user(NAME,PASSWORD,PERMISSION) VALUES('%s','%s',%d)"%name,password,permission)
-    cx.commit()
+    def __close__(self):
+        self.cursor.close()
+        self.connect.close()
 
-def getPassword(name):
-    cx = sqlite3.connect("../db/bottle.db")
-    cu = cx.cursor()
-    cu.execute("SELECT PASSWORD,PERMISSION FROM USER WHERE NAME='%s'"%name)
-    return cu.fetchone()
+    def __selectOneResultOneCell__(self,sql):
+        self.__open__()
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()[0]
+        self.__close__()
+        return result
+    @staticmethod
+    def selectOneResultOneCell(sql):
+        _data_ = data()
+        return _data_.__selectOneResultOneCell__(sql)
