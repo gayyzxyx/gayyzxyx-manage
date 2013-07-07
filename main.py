@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-import json
 
 import os
 import bottle
@@ -19,7 +18,7 @@ file_location = '../'
 pagesize=10
 curpage=1
 bottle.debug(True)
-
+fileLocation="H:\TDDOWNLOAD"
 
 @app.route("/static/<filename:re:.*\.(css|js|png|jpg|ico|gif)>")
 def static(filename):
@@ -37,7 +36,7 @@ def login():
     sql = "select password from user where name='%s'" % name
     s = Template(data.selectOneResultOneCell(sql))
     if(s.template == password):
-        b = fileManage.getFileList("C:\\Windows\\",pagesize,curpage)
+        b = fileManage.getFileList(fileLocation,pagesize,curpage)
         return template("download",filelist=b['files'],total = b['total'],curpage = curpage)
     else:
         return template("login")
@@ -45,8 +44,21 @@ def login():
 @app.route('/getfile/:index#[0-9]+#')
 def getfiles(index):
     intIndex=string.atoi(index)
-    b = fileManage.getFileList("C:\\Windows\\",pagesize,intIndex)
+    b = fileManage.getFileList(fileLocation,pagesize,intIndex)
     return template("download",filelist=b['files'],total = b['total'],curpage = intIndex)
+
+@app.post('/rename',method='POST')
+def rename():
+    #0表示成功 1表示文件不存在 2表示重命名失败
+    newName = request.forms.get('newName')
+    curPage = request.forms.get('curpage')
+    oldName = request.forms.get('oldname')
+    fileList = os.listdir(fileLocation)
+    for file in fileList:
+        if os.path.basename(file)==oldName:
+            os.rename(file,newName)
+
+    return "1"
 @app.error(404)
 @app.error(405)
 @app.error(500)

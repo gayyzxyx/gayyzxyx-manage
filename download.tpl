@@ -46,7 +46,7 @@
                     </thead>
                     %for file in filelist:
                     <tr>
-                        <td>{{file}}</td>
+                        <td id="filename">{{file.decode("gbk").encode("utf-8")}}</td>
                         <td style="text-align: center">
                             <div class="btn-group">
                                 <button class="btn">Action</button>
@@ -55,7 +55,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">delete</a></li>
-                                    <li><a href="javascript:$('#renameLabel').modal()" data-toggle="modal" role="button">rename</a></li>
+                                    <li><a href="#" onclick='getFileName("{{file.decode("gbk").encode("utf-8")}}")' data-toggle="modal" role="button">rename</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -101,14 +101,15 @@
             <div id="renameLabel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelleby="myRenameLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myRenameLabel">重命名</h3>
+                    <h3 id="myRenameLabel">ReName</h3>
                 </div>
                 <div class="modal-body">
-                    <input type="text">
+                    <input type="hidden" id="oldname">
+                    <input type="text" id="newName">
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-                    <button class="btn btn-primary">保存</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-primary" id="savename">Save</button>
                 </div>
             </div>
         </div>
@@ -129,6 +130,14 @@
                     }
                 }
         )
+        $('#savename').click(function(e){
+            newname = $('#newName').val();
+            curpage = $('#curpage').val();
+            oldname = $('#oldname').val();
+            $.post("/rename",{newName:newname,curpage:curpage,oldname:oldname},function(data){
+                alert(data);
+            })
+        })
         if("1"==($('#curpage').val())){
             $('#Prev').parent().attr("class","disabled");
             $('#Prev').removeAttr("href");
@@ -148,6 +157,11 @@
         $.post("/getfiles", {pageindex:_page}, function (data) {
             alert(data);
         })
+    }
+    function getFileName(data){
+        $('#renameLabel').modal();
+        $('#oldname').val(data);
+        $('#newName').val(data);
     }
 
 </script>
