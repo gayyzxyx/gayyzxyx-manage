@@ -6,15 +6,16 @@
     <link rel="stylesheet" href="/static/css/style.css" />
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="/static/css/zTreeStyle/zTreeStyle.css" />
+    <link rel="stylesheet" href="/static/css/zTreeStyle.css" />
     <link rel="shortcut icon" href="/static/favicon.ico" />
     <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.js"></script>
     <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script type = "text/javascript" src="/static/js/jquery-1.7.2.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/bootstrap-modal.js"></script>
-    <script src="/staitc/js/bootstrap-tab.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-tab.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-dropdown.js"></script>
 
 
 
