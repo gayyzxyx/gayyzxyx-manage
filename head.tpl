@@ -16,6 +16,7 @@
     <script src="/static/js/bootstrap-modal.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap-tab.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-tooltip.js"></script>
 
 
 

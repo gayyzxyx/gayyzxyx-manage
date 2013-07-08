@@ -19,6 +19,7 @@
     <script src="/static/js/bootstrap-modal.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap-tab.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-tooltip.js"></script>
 </head>
 <body>
 <div class="container">
@@ -29,11 +30,10 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active in fade" id="file-download">
-                <form class="form-search">
+                <form class="form-search" action="/download" method="post">
                     <h2 style="margin-bottom: 10px">File Address:</h2>
-
                     <div class="input-append">
-                        <input type="text" class="input-xxlarge" id="down_address">
+                        <input type="text" class="input-xxlarge" id="down_address" name="down_address">
                         <button type="submit" class="btn">download</button>
                     </div>
                 </form>
@@ -54,7 +54,7 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">delete</a></li>
+                                    <li><a href="#" onclick='deleteFile("{{file.decode("gbk").encode("utf-8")}}")' data-toggle="popver" data-placement="right" title data-original-title="Attention">delete</a></li>
                                     <li><a href="#" onclick='getFileName("{{file.decode("gbk").encode("utf-8")}}")' data-toggle="modal" role="button">rename</a></li>
                                 </ul>
                             </div>
@@ -109,7 +109,8 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                    <button class="btn btn-primary" id="savename">Save</button>
+                    <a href="#" class="btn btn-primary" id="savename" data-toggle="popover" data-placement="bottom" title data-original-title="Attention" >Save</a>
+
                 </div>
             </div>
         </div>
@@ -130,12 +131,19 @@
                     }
                 }
         )
+
         $('#savename').click(function(e){
             newname = $('#newName').val();
             curpage = $('#curpage').val();
             oldname = $('#oldname').val();
             $.post("/rename",{newName:newname,curpage:curpage,oldname:oldname},function(data){
-                alert(data);
+                if(data=="1"){
+                    location.reload();
+                }
+                else{
+                    $('#savename').attr("data-content",data);
+                    $('#savename').popover();
+                }
             })
         })
         if("1"==($('#curpage').val())){
@@ -162,6 +170,13 @@
         $('#renameLabel').modal();
         $('#oldname').val(data);
         $('#newName').val(data);
+    }
+    function deleteFile(_data){
+        $.post('/delete',{filename:_data},function(data){
+            if(data == "1"){
+                location.reload()
+            }
+        })
     }
 
 </script>
