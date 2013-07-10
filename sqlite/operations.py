@@ -6,7 +6,7 @@ import os
 
 class data:
     def __init__(self):
-        self.db = os.path.join(os.path.dirname(os.getcwd()),"db\\bottle.db")
+        self.db = "../db/bottle.db"
         self.connect = None
         self.cursor = None
     def __open__(self):

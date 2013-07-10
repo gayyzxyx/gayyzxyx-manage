@@ -8,13 +8,13 @@ class fileManage:
         p=str(p)
         if p=="":
             return []
-        p=p.replace("/","\\")
-        if p[-1]!="\\":
-            p = p + "\\"
+#        p=p.replace("/","\\")
+#        if p[-1]!="\\":
+#            p = p + "\\"
         a = os.listdir(p)
         files=[]
         for x in a:
-            if os.path.isfile(p+x):
+            if os.path.isfile(os.path.join(p,x)):
                 files.append(x)
         curindex = pagesize*(curpage-1)
         i = 0

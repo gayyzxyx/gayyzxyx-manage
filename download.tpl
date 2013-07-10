@@ -92,8 +92,8 @@
                     </div>
                     <div class="span5">
                         <div class="input-append">
-                            <input type="text" placeholder="Download folder">
-                            <button type="button" class="btn">Confirm</button>
+                            <input type="text" value={{fileLocation}} id="fileLocation" >
+                            <button type="button" class="btn" onclick="saveConfig()">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -150,16 +150,19 @@
             $('#Prev').parent().attr("class","disabled");
             $('#Prev').removeAttr("href");
         }
-        else if($('#total').val()==($('#curpage').val())){
-            $('#Next').parent().attr("class","disabled");
-            $('#Next').removeAttr("href");
-        }
         else{
-            $('#Prev').parent().removeAttr("class");
-            $('#Next').parent().removeAttr("class");
-            $('#Prev').attr("href","/getfile/{{curpage-1}}");
-            $('#Next').attr("href","/getfile/{{curpage+1}}");
+            if($('#total').val()==($('#curpage').val())){
+                $('#Next').parent().attr("class","disabled");
+                $('#Next').removeAttr("href");
+            }
+            else{
+                $('#Prev').parent().removeAttr("class");
+                $('#Next').parent().removeAttr("class");
+                $('#Prev').attr("href","/getfile/{{curpage-1}}");
+                $('#Next').attr("href","/getfile/{{curpage+1}}");
+            }
         }
+
     })
     function getPage(_page) {
         $.post("/getfiles", {pageindex:_page}, function (data) {
@@ -174,6 +177,15 @@
     function deleteFile(_data){
         $.post('/delete',{filename:_data},function(data){
             if(data == "1"){
+                location.href='http://127.0.0.1:8080/getfile/1'
+            }
+        })
+    }
+    function saveConfig(){
+        _fileLocation = $('#fileLocation').val();
+        $.post('/saveConfig',{fileLocation:_fileLocation},function(data){
+            if(data != "false"){
+                $('#fileLocation').val(data['newLocation']);
                 location.reload()
             }
         })

@@ -4,9 +4,9 @@
     <list default="true" id="e48713a1-db45-4186-a419-ae208fed135b" name="Default" comment="" />
     <ignored path="bottle-web.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/head.tpl" changelist="e48713a1-db45-4186-a419-ae208fed135b" time="1372951410382" ignored="false" />
-    <file path="/index.tpl" changelist="e48713a1-db45-4186-a419-ae208fed135b" time="1372951368524" ignored="false" />
     <file path="/nav.tpl" changelist="e48713a1-db45-4186-a419-ae208fed135b" time="1372951328597" ignored="false" />
+    <file path="/index.tpl" changelist="e48713a1-db45-4186-a419-ae208fed135b" time="1372951368524" ignored="false" />
+    <file path="/head.tpl" changelist="e48713a1-db45-4186-a419-ae208fed135b" time="1372951410382" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,20 +26,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
+      <file leaf-file-name="filemanager.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filemanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="33" selection-start="2709" selection-end="2709" vertical-scroll-proportion="4.204023">
+            <state line="15" column="5" selection-start="333" selection-end="429" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filemanager.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/filemanager.py">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="21" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="104" column="8" selection-start="3407" selection-end="3427" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#47#56#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,19 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="download.tpl" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="download.tpl" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/download.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="101" selection-start="1979" selection-end="1991" vertical-scroll-proportion="-5.535714">
-              <folding>
-                <element signature="n#style#0;n#h2#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1373304548681" expanded="true" signature="3574:3610" placeholder="&lt;xml/&gt;" />
-                <marker date="1373304548681" expanded="true" signature="3703:4712" placeholder="&lt;xml/&gt;" />
-                <marker date="1373304548681" expanded="true" signature="3782:4361" placeholder="&lt;xml/&gt;" />
-              </folding>
+            <state line="156" column="13" selection-start="7745" selection-end="7745" vertical-scroll-proportion="0.39413682">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,9 +79,12 @@
         <option value="$PROJECT_DIR$/sqlite/datasources.py" />
         <option value="$PROJECT_DIR$/login.tpl" />
         <option value="$PROJECT_DIR$/sqlite/__init__.py" />
-        <option value="$PROJECT_DIR$/sqlite/operations.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/head.tpl" />
+        <option value="$PROJECT_DIR$/static/config.py" />
+        <option value="$PROJECT_DIR$/config.py" />
+        <option value="$PROJECT_DIR$/configSetting.py" />
+        <option value="$PROJECT_DIR$/sqlite/operations.py" />
         <option value="$PROJECT_DIR$/filemanager.py" />
         <option value="$PROJECT_DIR$/download.tpl" />
         <option value="$PROJECT_DIR$/main.py" />
@@ -154,6 +151,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bottle-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gayyzxyx-manage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="sqlite" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -166,11 +177,11 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="http.proxy" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="http.proxy" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -183,6 +194,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Code\PyCharm\bottle-web" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\work\github\gayyzxyx-manage" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -337,17 +351,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="304" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36949924" sideWeight="0.6035313" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22610015" sideWeight="0.6035313" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3964687" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2247191" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37239164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -409,37 +423,17 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="39" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="56" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python27/Lib/string.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="13" selection-start="4404" selection-end="4404" vertical-scroll-proportion="0.16763006">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sqlite/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="17" selection-start="693" selection-end="693" vertical-scroll-proportion="0.9573643" />
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/traceback.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="2342" selection-end="2342" vertical-scroll-proportion="0.33333334" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nav.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="42" selection-start="280" selection-end="280" vertical-scroll-proportion="0.16754851" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="12" selection-start="488" selection-end="488" vertical-scroll-proportion="0.4801444" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2488" column="0" selection-start="51029" selection-end="51029" vertical-scroll-proportion="-0.5701358">
@@ -466,7 +460,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/head.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="82" selection-start="1267" selection-end="1267" vertical-scroll-proportion="0.465625">
+        <state line="18" column="82" selection-start="1267" selection-end="1267" vertical-scroll-proportion="0.465625" />
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/xml/etree/ElementTree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="210" column="13" selection-start="7160" selection-end="7160" vertical-scroll-proportion="0.33186814">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bottle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="763" column="0" selection-start="30847" selection-end="30847" vertical-scroll-proportion="0.33186814">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configSetting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="40" selection-start="732" selection-end="732" vertical-scroll-proportion="0.523416">
           <folding />
         </state>
       </provider>
@@ -478,45 +491,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sqlite/operations.py">
+    <entry file="file://$PROJECT_DIR$/FileLocation.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="23" selection-start="691" selection-end="691" vertical-scroll-proportion="1.4195403">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bottle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1574" column="0" selection-start="64654" selection-end="64654" vertical-scroll-proportion="0.33333334">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/filemanager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="21" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0">
+        <state line="15" column="5" selection-start="333" selection-end="429" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/download.tpl">
+    <entry file="file://C:/Python27/Lib/threading.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="101" selection-start="1979" selection-end="1991" vertical-scroll-proportion="-5.535714">
-          <folding>
-            <element signature="n#style#0;n#h2#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1373304548681" expanded="true" signature="3574:3610" placeholder="&lt;xml/&gt;" />
-            <marker date="1373304548681" expanded="true" signature="3703:4712" placeholder="&lt;xml/&gt;" />
-            <marker date="1373304548681" expanded="true" signature="3782:4361" placeholder="&lt;xml/&gt;" />
-          </folding>
+        <state line="485" column="0" selection-start="15192" selection-end="15192" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqlite/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqlite/operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="27" selection-start="151" selection-end="151" vertical-scroll-proportion="0.43678162">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="33" selection-start="2709" selection-end="2709" vertical-scroll-proportion="4.204023">
+        <state line="104" column="8" selection-start="3407" selection-end="3427" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#47#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/download.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="156" column="13" selection-start="7745" selection-end="7745" vertical-scroll-proportion="0.39413682">
           <folding />
         </state>
       </provider>

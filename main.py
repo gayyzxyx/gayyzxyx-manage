@@ -3,50 +3,64 @@
 
 import os
 import bottle
-import sqlite3
+from configSetting import configSetting
 import string
 from sqlite.operations import  data
-from bottle import Bottle, run, template, static_file,request,response
+from bottle import Bottle, run, template, static_file, request, response
 from string import Template
 from filemanager import fileManage
+import time,threading
 app = Bottle()
-host = "192.168.1.100"
+host = "0.0.0.0"
 port = 8080
 url = "http://" + host + ":%d" % port
 file_location = '../'
-pagesize=10
-curpage=1
+docConfig = configSetting.readConfig()
+pagesize = string.atoi(docConfig['pagesize'])
+fileLocation = docConfig['fileLocation']
+curpage = 1
 bottle.debug(True)
-fileLocation="C:\Users\gayyzxyx\Desktop"
 systemType = os.name
 
 @app.route("/static/<filename:re:.*\.(css|js|png|jpg|ico|gif)>")
 def static(filename):
     return static_file(filename, os.getcwd() + "/static/")
 
+
 @app.get("/")
 def index():
     return template("login")
 
-@app.post('/login',method='POST')
+
+@app.post('/login', method='POST')
 def login():
     name = request.forms.get('name')
     password = request.forms.get('password')
+    if name == "" or password == "":
+        return template("login")
     sql = "select password from user where name='%s'" % name
+    docConfig = configSetting.readConfig()
+    pagesize = string.atoi(docConfig['pagesize'])
+    fileLocation = docConfig['fileLocation']
     s = Template(data.selectOneResultOneCell(sql))
     if(s.template == password):
-        b = fileManage.getFileList(fileLocation,pagesize,curpage)
-        return template("download",filelist=b['files'],total = b['total'],curpage = curpage)
+        b = fileManage.getFileList(fileLocation, pagesize, curpage)
+        return template("download", filelist=b['files'], total=b['total'], curpage=curpage, fileLocation=fileLocation)
     else:
         return template("login")
 
+
 @app.route('/getfile/:index#[0-9]+#')
 def getfiles(index):
-    intIndex=string.atoi(index)
-    b = fileManage.getFileList(fileLocation,pagesize,intIndex)
-    return template("download",filelist=b['files'],total = b['total'],curpage = intIndex)
+    intIndex = string.atoi(index)
+    docConfig = configSetting.readConfig()
+    pagesize = string.atoi(docConfig['pagesize'])
+    fileLocation = docConfig['fileLocation']
+    b = fileManage.getFileList(fileLocation, pagesize, intIndex)
+    return template("download", filelist=b['files'], total=b['total'], curpage=intIndex, fileLocation=fileLocation)
 
-@app.post('/rename',method='POST')
+
+@app.post('/rename', method='POST')
 def rename():
     #0表示成功 1表示文件不存在 2表示重命名失败
     newName = request.forms.get('newName')
@@ -54,41 +68,63 @@ def rename():
     oldName = request.forms.get('oldname')
     fileList = os.listdir(fileLocation)
     for file in fileList:
-        if getCode(os.path.basename(file),'gbk2utf')==oldName:
+        if getCode(os.path.basename(file), 'gbk2utf') == oldName:
             try:
-                os.rename(getCode(os.path.join(fileLocation,oldName),'utf2gbk'),getCode(os.path.join(fileLocation,newName),'utf2gbk'))
+                os.rename(getCode(os.path.join(fileLocation, oldName), 'utf2gbk'),getCode(os.path.join(fileLocation, newName), 'utf2gbk'))
                 break
-            except Exception,ex:
-                return Exception,":",ex
+            except Exception, ex:
+                return Exception, ":", ex
     return "1"
 
-@app.post('/delete',method='POST')
+
+@app.post('/delete', method='POST')
 def delete():
+    docConfig = configSetting.readConfig()
+    pagesize = string.atoi(docConfig['pagesize'])
+    fileLocation = docConfig['fileLocation']
     filename = request.forms.get("filename")
-    filedir = os.path.join(fileLocation,filename)
-    if os.path.isfile(getCode(filedir,'utf2gbk')):
+    filedir = os.path.join(fileLocation, filename)
+    if os.path.isfile(getCode(filedir, 'utf2gbk')):
         try:
-            os.remove(getCode(filedir,'utf2gbk'))
+            os.remove(getCode(filedir, 'utf2gbk'))
             return "1"
-        except Exception,ex:
-            return Exception,":",ex
+        except Exception, ex:
+            return Exception, ":", ex
     return "0"
 
-@app.post('/download',method='POST')
+
+@app.post('/download', method='POST')
 def download():
     addr = request.forms.get('down_address')
-    shellBash = "wget %s"%addr
-    os.system(shellBash)
-    b = fileManage.getFileList(fileLocation,pagesize,curpage)
-    return template("download",filelist=b['files'],total = b['total'],curpage = curpage)
+    docConfig = configSetting.readConfig()
+    pagesize = string.atoi(docConfig['pagesize'])
+    fileLocation = docConfig['fileLocation']
+    if addr!="":
+        shellBash = "wget -c -P %s %s" %(fileLocation,addr)
+#        os.system(shellBash)
+        runThread(shellBash)
+    b = fileManage.getFileList(fileLocation, pagesize, curpage)
+    return template("download", filelist=b['files'], total=b['total'], curpage=curpage, fileLocation=fileLocation)
 
-def getCode(requestString,modal):
-    if systemType=='nt' and modal=='gbk2utf':
+
+@app.post('/saveConfig', method='POST')
+def saveConfig():
+    fileLocation = request.forms.get('fileLocation')
+    cConfig = {'fileLocation': fileLocation}
+    if configSetting.saveConfig(cConfig) == 1:
+        return {'result': "true", 'newLocation': fileLocation}
+    else:
+        return "false"
+
+
+def getCode(requestString, modal):
+    if systemType == 'nt' and modal == 'gbk2utf':
         return requestString.decode("gbk").encode("utf-8")
-    elif systemType=='nt' and modal=='utf2gbk':
+    elif systemType == 'nt' and modal == 'utf2gbk':
         return requestString.decode("utf-8").encode("gbk")
-    elif systemType=='posix':
+    elif systemType == 'posix':
         return requestString
+
 
 @app.error(404)
 @app.error(405)
@@ -96,8 +132,21 @@ def getCode(requestString,modal):
 def error(error):
     return template("404", error=error)
 
-run(app, host=host, port=port)
+class timer(threading.Thread):
+    def __init__(self,addr):
+        threading.Thread.__init__(self)
+        self.addr = addr
 
+    def run(self):
+        os.system(self.addr)
+
+def runThread(addr):
+        thread = timer(addr)
+        thread.start()
+        return
+
+run(app, host=host, port=port)
+#cherrypy.quickstart(app)
 
 
 
