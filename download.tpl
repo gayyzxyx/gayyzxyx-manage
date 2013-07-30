@@ -40,13 +40,15 @@
                 <table class="table table-bordered table-hover table-striped">
                     <thead>
                     <tr>
-                        <td style="word-wrap: break-word" width="80%"><p class="lead text-center">File Name</p></td>
+                        <td style="word-wrap: break-word" width="60%"><p class="lead text-center">File Name</p></td>
+                        <td style="word-wrap: break-word" width="20%"><p class="lead text-center">File Size</p> </td>
                         <td style="word-wrap: break-word" width="20%"><p class="lead text-center">Operation</p></td>
                     </tr>
                     </thead>
                     %for file in filelist:
                     <tr>
-                        <td id="filename">{{file.decode("gbk").encode("utf-8")}}</td>
+                        <td id="filename">{{file.fileName.decode("gbk").encode("utf-8")}}</td>
+                        <td>{{file.fileSize/1024.0}}KB</td>
                         <td style="text-align: center">
                             <div class="btn-group">
                                 <button class="btn">Action</button>
@@ -54,8 +56,8 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" onclick='deleteFile("{{file.decode("gbk").encode("utf-8")}}")' data-toggle="popver" data-placement="right" title data-original-title="Attention">delete</a></li>
-                                    <li><a href="#" onclick='getFileName("{{file.decode("gbk").encode("utf-8")}}")' data-toggle="modal" role="button">rename</a></li>
+                                    <li><a href="#" onclick='deleteFile("{{file.fileName.decode("gbk").encode("utf-8")}}")' data-toggle="popver" data-placement="right" title data-original-title="Attention">delete</a></li>
+                                    <li><a href="#" onclick='getFileName("{{file.fileName.decode("gbk").encode("utf-8")}}")' data-toggle="modal" role="button">rename</a></li>
                                 </ul>
                             </div>
                         </td>

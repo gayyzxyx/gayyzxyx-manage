@@ -145,7 +145,7 @@ def runThread(addr):
         thread.start()
         return
 
-run(app, host=host, port=port)
+run(app, server="tornado", host=host, port=port)
 #cherrypy.quickstart(app)
 
 
