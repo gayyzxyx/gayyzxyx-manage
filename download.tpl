@@ -47,8 +47,18 @@
                     </thead>
                     %for file in filelist:
                     <tr>
-                        <td id="filename">{{file.fileName.decode("gbk").encode("utf-8")}}</td>
-                        <td>{{file.fileSize/1024.0}}KB</td>
+                        <td id="filename">{{file.fileName}}</td>
+                        <td>
+                            % if file.status == '100':
+                                {{file.fileSize/1024.0/1024.0}}MB
+                            % else:
+                            <div class="progress progress-striped active">
+                                <div class="bar" style="width:{{file.status}}%;"></div>
+                            </div>
+
+                            % end
+
+                        </td>
                         <td style="text-align: center">
                             <div class="btn-group">
                                 <button class="btn">Action</button>
@@ -56,8 +66,8 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" onclick='deleteFile("{{file.fileName.decode("gbk").encode("utf-8")}}")' data-toggle="popver" data-placement="right" title data-original-title="Attention">delete</a></li>
-                                    <li><a href="#" onclick='getFileName("{{file.fileName.decode("gbk").encode("utf-8")}}")' data-toggle="modal" role="button">rename</a></li>
+                                    <li><a href="#" onclick='deleteFile("{{file.fileName}}")' data-toggle="popver" data-placement="right" title data-original-title="Attention">delete</a></li>
+                                    <li><a href="#" onclick='getFileName("{{file.fileName}}")' data-toggle="modal" role="button">rename</a></li>
                                 </ul>
                             </div>
                         </td>

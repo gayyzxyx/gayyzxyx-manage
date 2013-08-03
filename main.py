@@ -5,11 +5,12 @@ import os
 import bottle
 from configSetting import configSetting
 import string
-from sqlite.operations import  data
+from sqlite.operations import data
 from bottle import Bottle, run, template, static_file, request, response
 from string import Template
 from filemanager import fileManage
-import time,threading
+import time, threading
+
 app = Bottle()
 host = "0.0.0.0"
 port = 8080
@@ -21,6 +22,7 @@ fileLocation = docConfig['fileLocation']
 curpage = 1
 bottle.debug(True)
 systemType = os.name
+
 
 @app.route("/static/<filename:re:.*\.(css|js|png|jpg|ico|gif)>")
 def static(filename):
@@ -42,8 +44,8 @@ def login():
     docConfig = configSetting.readConfig()
     pagesize = string.atoi(docConfig['pagesize'])
     fileLocation = docConfig['fileLocation']
-    s = Template(data.selectOneResultOneCell(sql))
-    if(s.template == password):
+    s = data.selectOneResultOneCell(sql)
+    if ("".join(s) == password):
         b = fileManage.getFileList(fileLocation, pagesize, curpage)
         return template("download", filelist=b['files'], total=b['total'], curpage=curpage, fileLocation=fileLocation)
     else:
@@ -67,10 +69,13 @@ def rename():
     curPage = request.forms.get('curpage')
     oldName = request.forms.get('oldname')
     fileList = os.listdir(fileLocation)
+    sql = "update filedown set filename='%s' where filename='%s'" % (newName, oldName)
     for file in fileList:
         if getCode(os.path.basename(file), 'gbk2utf') == oldName:
             try:
-                os.rename(getCode(os.path.join(fileLocation, oldName), 'utf2gbk'),getCode(os.path.join(fileLocation, newName), 'utf2gbk'))
+                os.rename(getCode(os.path.join(fileLocation, oldName), 'utf2gbk'),
+                          getCode(os.path.join(fileLocation, newName), 'utf2gbk'))
+                data.insertOneCell(sql)
                 break
             except Exception, ex:
                 return Exception, ":", ex
@@ -84,8 +89,10 @@ def delete():
     fileLocation = docConfig['fileLocation']
     filename = request.forms.get("filename")
     filedir = os.path.join(fileLocation, filename)
+    sql = "delete from filedown where filename='%s'" % filename
     if os.path.isfile(getCode(filedir, 'utf2gbk')):
         try:
+            data.insertOneCell(sql)
             os.remove(getCode(filedir, 'utf2gbk'))
             return "1"
         except Exception, ex:
@@ -99,9 +106,9 @@ def download():
     docConfig = configSetting.readConfig()
     pagesize = string.atoi(docConfig['pagesize'])
     fileLocation = docConfig['fileLocation']
-    if addr!="":
-        shellBash = "wget -c -P %s %s" %(fileLocation,addr)
-#        os.system(shellBash)
+    if addr != "":
+        shellBash = "wget -c -P %s %s" % (fileLocation, addr)
+        #        os.system(shellBash)
         runThread(shellBash)
     b = fileManage.getFileList(fileLocation, pagesize, curpage)
     return template("download", filelist=b['files'], total=b['total'], curpage=curpage, fileLocation=fileLocation)
@@ -132,18 +139,30 @@ def getCode(requestString, modal):
 def error(error):
     return template("404", error=error)
 
+
 class timer(threading.Thread):
-    def __init__(self,addr):
+    def __init__(self, addr):
         threading.Thread.__init__(self)
         self.addr = addr
+        self.thread_stop = False
 
     def run(self):
-        os.system(self.addr)
+        shellLength = "curl -I %s | grep Content-Length|awk -F':' '{print $2}'" % self.addr
+        fileLength = os.popen(shellLength, 'r').read().replace(' ','').replace('\r','').replace('\n', '')
+        fileName = self.addr.split('/')[len(self.addr.split('/'))-1]
+        if fileLength != '':
+            sql = "insert into filedown(filename,filelength) values('%s','%s')" % (fileName, fileLength)
+            data.insertOneCell(sql)
+            os.system(self.addr)
+
+    def stop(self):
+        self.thread_stop = True
 
 def runThread(addr):
-        thread = timer(addr)
-        thread.start()
-        return
+    thread = timer(addr)
+    thread.start()
+    return
+
 
 run(app, server="tornado", host=host, port=port)
 #cherrypy.quickstart(app)
